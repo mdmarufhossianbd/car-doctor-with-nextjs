@@ -1,5 +1,7 @@
 import HomePageBanner from "./components/banner";
 import HomeAbout from "./components/homeAbout";
+import HomePageContact from "./components/homeContact";
+import HomePopularProduct from "./components/homePopularProduct";
 import HomeService from "./components/homeService";
 
 export default function Home() {
@@ -8,6 +10,8 @@ export default function Home() {
       <HomePageBanner/>
       <HomeAbout />
       <HomeService />
+      <HomePageContact />
+      <HomePopularProduct />  
     </main>
   );
 }

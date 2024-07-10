@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
+import Btn from "./clientComponents/btn";
 
 const HomeService = () => {
     const services = [
@@ -183,7 +184,9 @@ const HomeService = () => {
                             </div>
                         </div>)
                 }
+                
             </div>
+            <div className="text-center"><Btn btnText={'More Service'} /></div>
         </div>
     );
 };
