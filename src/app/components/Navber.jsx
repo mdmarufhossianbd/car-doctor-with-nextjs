@@ -40,6 +40,8 @@ const Navber = () => {
                 <CiShoppingCart className='text-3xl '/>
                 <CiSearch className='text-3xl '/>                
                 <Btn btnText={'Appointment'}></Btn>
+                <Link className='px-7 py-4 bg-[#FF3811] font-medium text-white rounded' href={'/signup'}>Signup</Link>
+               
             </div>
         </div>
     );
