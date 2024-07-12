@@ -1,20 +1,34 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
+import toast, { Toaster } from 'react-hot-toast';
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import loginImg from '../../../public/assets/images/login/login.svg';
 
 const Signup = () => {
-    const handleSignUp = async(e) => {
+
+    const handleSignUp = async (e) => {
         e.preventDefault()
         const newUser = {
-            name : e.target.name.value,
-            email : e.target.email.value,
-            password : e.target.password.value
+            name: e.target.name.value,
+            email: e.target.email.value,
+            password: e.target.password.value
         }
-        console.log(newUser);
-        const response = await fetch('/signup/api')
+
+        const response = await fetch('/signup/api', {
+            method: "POST",
+            body: JSON.stringify(newUser),
+            headers: {
+                "content-type": "json/application"
+            }
+        });
+        
+        if (response.ok) {
+            e.target.reset()
+            toast.success('Successfully create your account.')
+
+        }
     }
     return (
         <div className='max-w-7xl mx-auto my-16 flex items-center gap-20'>
@@ -45,6 +59,10 @@ const Signup = () => {
                 </div>
                 <p className='text-center my-10'>Already have an account? <Link className='text-[#FF3811] font-medium' href={'/signin'}>Signin</Link></p>
             </div>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
         </div>
     );
 };
