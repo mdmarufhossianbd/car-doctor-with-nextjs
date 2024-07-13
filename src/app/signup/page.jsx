@@ -1,13 +1,14 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import toast, { Toaster } from 'react-hot-toast';
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import loginImg from '../../../public/assets/images/login/login.svg';
 
 const Signup = () => {
-
+    const router = useRouter();
     const handleSignUp = async (e) => {
         e.preventDefault()
         const newUser = {
@@ -25,9 +26,12 @@ const Signup = () => {
         });
         
         if (response.ok) {
-            e.target.reset()
+            e.target.reset();
             toast.success('Successfully create your account.')
+            router.push('/signin')
 
+        } else if(response.status === 406){
+            toast.error('Already you have an account')
         }
     }
     return (

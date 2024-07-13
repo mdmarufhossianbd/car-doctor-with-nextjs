@@ -1,11 +1,15 @@
+'use client'
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CiSearch, CiShoppingCart } from "react-icons/ci";
-
 import logo from '../../../public/assets/logo.svg';
 import Btn from './clientComponents/btn';
 
 const Navber = () => {
+
+    const user = useSession();
+
     const navLinks = [
         {
             title: 'Home',
@@ -38,10 +42,10 @@ const Navber = () => {
             </div>
             <div className='flex items-center gap-4'>
                 <CiShoppingCart className='text-3xl '/>
-                <CiSearch className='text-3xl '/>                
+                <CiSearch className='text-3xl '/>    
                 <Btn btnText={'Appointment'}></Btn>
-                <Link className='px-7 py-4 bg-[#FF3811] font-medium text-white rounded' href={'/signup'}>Signup</Link>
-               
+                {user?.data ? <button onClick={() => signOut()} className='px-7 py-4 bg-[#FF3811] font-medium text-white rounded'>Logout</button> :
+                <Link className='px-7 py-4 bg-[#FF3811] font-medium text-white rounded' href={'/signup'}>Signup</Link>}
             </div>
         </div>
     );
